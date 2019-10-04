@@ -1,0 +1,11 @@
+export const CHANGE_EMAIL = 'change_email';
+export const CHANGE_PASSWORD = 'change_password';
+export const CHANGE_NAME = 'change_name';
+export const REGISTER_SUCCESS = 'register_success';
+export const REGISTER_ERROR = 'register_error';
+export const ON_DONE_ALL_SLIDES = 'on_done_all_slides';
+export const ON_SKIP_SLIDES = 'on_skip_slides';
+export const LOGIN_SUCCESS = 'login_success';
+export const LOGIN_FAILED = 'login_failed';
+export const DOING_LOGIN = 'doing_login';
+export const DOING_REGISTER = 'doing_register';

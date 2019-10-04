@@ -94,7 +94,7 @@ const slides = [
     imageStyle: styles.image,
     backgroundColor: '#D500F9',
   },
-]; 
+];
 
 const mapStateToProps = state => ({
   showSlider: state.AuthenticationReducer.showSlider,

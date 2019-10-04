@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, ActivityIndicator} from 'react-native';
 import TextInput from '../commons/TextInput';
 import Button from '../commons/Button';
 import Background from '../commons/Background';
@@ -22,6 +22,14 @@ class FormRegister extends Component {
   _registerUser() {
     const {name, password, email} = this.props;
     this.props.registerUser({name, password, email});
+  }
+
+  renderButtons() {
+    if (this.props.loading) {
+      return <ActivityIndicator />;
+    } else {
+      return <Button title="Cadastrar" onPress={this._registerUser} />;
+    }
   }
 
   render() {
@@ -47,9 +55,7 @@ class FormRegister extends Component {
           />
           <ErroText error={this.props.error} />
         </View>
-        <View style={styles.footer}>
-          <Button title="Cadastrar" onPress={this._registerUser} />
-        </View>
+        <View style={styles.footer}>{this.renderButtons()}</View>
       </View>
     );
   }
@@ -59,7 +65,8 @@ const mapStateToProps = state => ({
   email: state.AuthenticationReducer.email,
   password: state.AuthenticationReducer.password,
   name: state.AuthenticationReducer.name,
-  error: state.AuthenticationReducer.error,
+  error: state.AuthenticationReducer.errorRegister,
+  loading: state.AuthenticationReducer.loadingRegister,
 });
 
 const styles = StyleSheet.create({

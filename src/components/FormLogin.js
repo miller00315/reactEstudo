@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Actions} from 'react-native-router-flux';
 
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, ActivityIndicator} from 'react-native';
 import TextInput from '../commons/TextInput';
 import Button from '../commons/Button';
 import TouchableText from '../commons/TouchableText';
@@ -33,6 +33,22 @@ class FormLogin extends Component {
     this.props.loginUser({email, password});
   }
 
+  renderButtons() {
+    if (this.props.loading) {
+      return <ActivityIndicator size="large" />;
+    } else {
+      return (
+        <View>
+          <TouchableText
+            title="Ainda não tem cadastro? Cadastre-se."
+            onPress={this.goToRegister}
+          />
+          <Button title={I18n.t('login')} onPress={this._loginUser} />
+        </View>
+      );
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -51,14 +67,8 @@ class FormLogin extends Component {
             isSecure
           />
           <ErroText error={this.props.error} />
-          <TouchableText
-            title="Ainda não tem cadastro? Cadastre-se."
-            onPress={this.goToRegister}
-          />
         </View>
-        <View style={styles.footer}>
-          <Button title="Entrar" onPress={this._loginUser} />
-        </View>
+        <View style={styles.footer}>{this.renderButtons()}</View>
       </View>
     );
   }
@@ -67,7 +77,8 @@ class FormLogin extends Component {
 const mapStateToProps = state => ({
   email: state.AuthenticationReducer.email,
   password: state.AuthenticationReducer.password,
-  error: state.AuthenticationReducer.error,
+  error: state.AuthenticationReducer.errorLogin,
+  loading: state.AuthenticationReducer.loadingLogin,
 });
 
 const styles = StyleSheet.create({
@@ -80,6 +91,7 @@ const styles = StyleSheet.create({
   },
   body: {
     flex: 2,
+    justifyContent: 'center',
   },
   footer: {
     flex: 2,
