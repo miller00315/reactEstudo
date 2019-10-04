@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import {
   View,
   Text,
@@ -9,16 +10,16 @@ import {
 } from 'react-native';
 import {TabBar} from 'react-native-tab-view';
 
-import {Actions} from 'react-native-router-flux';
+import {setAddContactScreen} from '../actions/AppActions';
 
-export default props => {
+const TabBarMenu = props => {
   return (
     <View style={{backgroundColor: props.color, elevation: 4}}>
       <StatusBar backgroundColor={props.color} />
       <View style={styles.body}>
         <Text style={styles.text}>{props.title}</Text>
         <View style={styles.buttons}>
-          <TouchableOpacity onPress={() => Actions.addContact()}>
+          <TouchableOpacity onPress={() => props.setAddContactScreen(true)}>
             <Image source={require('../assets/imgs/adicionar-contato.png')} />
           </TouchableOpacity>
           <TouchableOpacity>
@@ -51,3 +52,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
 });
+
+export default connect(
+  null,
+  {setAddContactScreen},
+)(TabBarMenu);

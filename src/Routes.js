@@ -9,7 +9,7 @@ import AddContact from './components/AddContact';
 export default props => (
   <Router navigationBarStyle={styles.navibar} titleStyle={styles.titleNavibar}>
     <Scene key="root">
-      <Scene key="formLogin" component={FormLogin} hideNavBar />
+      <Scene key="formLogin" component={FormLogin} hideNavBar initial />
       <Scene key="formRegister" component={FormRegister} title="Registrar" />
       <Scene key="welcomes" component={Welcomes} title="Welcomes" hideNavBar />
       <Scene
@@ -17,7 +17,6 @@ export default props => (
         component={MainScreen}
         title="Catarse"
         hideNavBar
-        initial
       />
       <Scene
         key="addContact"

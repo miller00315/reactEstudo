@@ -36,10 +36,16 @@ export const registerUser = ({name, password, email}) => {
         Firebase.database()
           .ref(`/usuarios/${emailb64}`)
           .push({name})
-          .then(value => registerSuccess(user, dispatch))
-          .catch(error => registerFailed(error, dispatch));
+          .then(value => {
+            registerSuccess(user, dispatch);
+          })
+          .catch(error => {
+            registerFailed(error, dispatch);
+          });
       })
-      .catch(error => registerFailed(error, dispatch));
+      .catch(error => {
+        registerFailed(error, dispatch);
+      });
   };
 };
 
@@ -49,12 +55,8 @@ export const loginUser = ({email, password}) => {
 
     Firebase.auth()
       .signInWithEmailAndPassword(email, password)
-      .then(user => {
-        loginSuccess(user, dispatch);
-      })
-      .catch(error => {
-        loginFailed(error, dispatch);
-      });
+      .then(user => loginSuccess(user, dispatch))
+      .catch(error => loginFailed(error, dispatch));
   };
 };
 

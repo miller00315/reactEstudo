@@ -9,7 +9,7 @@ export default props => (
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#0000ff',
+    backgroundColor: '#114d44',
     padding: 10,
     alignItems: 'center',
     justifyContent: 'center',
@@ -20,5 +20,6 @@ const styles = StyleSheet.create({
   textButon: {
     color: '#ffffff',
     fontWeight: 'bold',
+    backgroundColor: 'transparent',
   },
 });
